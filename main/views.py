@@ -6,8 +6,7 @@ from . import models
 def form_pinjam(request):
     if request.POST:
         models.pinjam.objects.create(
-            nmr_anggota = request.POST ['na'],
-            nama = request.POST ['np'],
+            nmr_anggota = request.POST ['choose'],
             buku = request.POST ['nb'],
             jml_buku = request.POST ['jb'],
             tgl_pinjam = request.POST ['tp'],

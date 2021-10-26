@@ -9,16 +9,31 @@
     <title>Form peminjaman</title>
 </head>
 <body>
-    <h2><p style="text-align:center">Form Peminjaman</p></h2>
-    <div class= "form">
-        <form action="" method="POST">
-            {% csrf_token %} 
-            <label for="na">Nomor Anggota</label>
-            <input type="number" class="form-control" name="na">
-            <br>
-            <label for="np">Nama Pengunjung</label>
-            <input type="text" class="form-control" name="np">
-            <br>
+  <script type="text/javascript">
+    function selectOnChange(obj) {
+
+        var val = obj.options[obj.selectedIndex].value;
+        var text = obj.options[obj.selectedIndex].text;
+        document.getElementById("field1").value = val;
+        document.getElementById("field2").value = text;
+     }
+</script>
+</head>
+<body>
+    <div>
+      <form class="col-2" action="" method="POST">
+        {% csrf_token %} 
+        <label for="na">Nomor Anggota</label>
+        <select onchange='selectOnChange(this)' name="choose">
+              <option value="0"></option>
+              <option value="Rahmtun nazila">181111102</option>
+              <option value="Ahmad yasin">181111103</option>
+              <option value="Rizal Hidayattullah">181111105</option>
+        </select>
+            <label for="np">Nama Anggota</label>
+           <div>
+            <input disabled type="text" class= "form-control" name="ref_person" id="field1" value="">
+            </div>
             <label for="nb">Nama Buku</label>
             <input type="text" class="form-control" name="nb">
             <br>
@@ -31,8 +46,9 @@
             <label for="tk">Tgl-kembali</label>
             <input type="date" class="form-control" name="tk">
             <button type="submit" >Simpan </button>
-        </form>
+          </form>
     </div>
+  </div>
     <br>
     <table class="table table-dark">
         <thead>
@@ -53,9 +69,9 @@
             <td>{{z.tgl_pinjam}}</td>
             <td>{{z.tgl_kembali}}</td>
             <td> 
-                <a type="submit" class="btn btn-success" href="/{{z.id}}/delete">Delete</a>
-                <a type="submit" class="btn btn-success" href="/{{z.id}}/detail/">view</a>
-                <a type="submit" class="btn btn-success" href="/{{z.id}}/update/">Edit</a>
+                <a type="button" class="btn btn-success" href="/{{z.id}}/delete">Delete</a>
+                <a type="button" class="btn btn-success" href="/{{z.id}}/detail/">view</a>
+                <a type="button" class="btn btn-success" href="/{{z.id}}/update/">Edit</a>
             </td>
           </tr>
         </tbody>

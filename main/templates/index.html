@@ -1,7 +1,6 @@
 <html lang="en">
-<head>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+     <div class="container-fluid">
           <a class="navbar-brand" href="#">Navbar</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -36,8 +35,33 @@
           </div>
         </div>
       </nav>
+<body>
+  <script type="text/javascript">
+    function selectOnChange(obj) {
+
+        var val = obj.options[obj.selectedIndex].value;
+        var text = obj.options[obj.selectedIndex].text;
+        document.getElementById("field1").value = val;
+        document.getElementById("field2").value = text;
+     }
+</script>
 </head>
 <body>
-    
+
+    <div>
+        <ul><li><h2>Nomor anggota</h2></li></ul>
+        <select onchange='selectOnChange(this)' name="choose">
+              <option value="0"></option>
+              <option value="Rahmtun nazila">181111102</option>
+              <option value="Ahmad yasin">181111103</option>
+              <option value="Rizal Hidayattullah">181111105</option>
+
+         </select>
+
+     </div>
+     <ul><li><h2>Nama Angggota</h2></li></ul>
+     <div>
+          <input type="text" name="ref_person" id="field1" value="">
+      </div>
 </body>
 </html>
