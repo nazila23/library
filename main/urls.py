@@ -11,4 +11,5 @@ urlpatterns = [
     path('visi/', views.visi, name='visi'), 
     path('<id>/buku_dipinjam/', views.buku_dipinjam), 
     path('index/', views.index, name='index'),
+    path('dftr/', views.dftr, name='dftr'),
 ]

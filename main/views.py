@@ -1,11 +1,13 @@
-from django.shortcuts import render
-# Create your views here.
+from django.core.checks import messages
+from django.http import request
+from django.http.response import Http404
 from django.shortcuts import redirect, render
-from . import models
+from.import models
+
 
 def form_pinjam(request):
     if request.POST:
-        models.pinjam.objects.create(
+        models.Pinjam.objects.create(
             nmr_anggota = request.POST ['choose'],
             buku = request.POST ['nb'],
             jml_buku = request.POST ['jb'],
@@ -13,10 +15,12 @@ def form_pinjam(request):
             tgl_kembali = request.POST ['tk'],
             ) 
         return redirect('/')
-    data2 = models.pinjam.objects.all()
+    data2 = models.Pinjam.objects.all()
     return render(request, 'form_pinjam.html', {
-            'isi':data2
-            })
+            'isi':data2,
+             })
+
+
 def deleteindex(request,id):
     models.pinjam.objects.filter(pk=id).delete()
     return redirect ('form_pinjam')
@@ -30,11 +34,11 @@ def updateindex(request,id):
     if request.POST:
         models.pinjam.objects.filter(id=id).update(
             nmr_anggota = request.POST ['nmr_anggota'],
-            nama = request.POST ['nama'],
-            buku = request.POST ['buku'],
-            jml_buku = request.POST ['jml_buku'],
-            tgl_pinjam = request.POST ['tgl_pinjam' ],
-            tgl_kembali = request.POST ['tgl_kembali'],
+            nama_anggota = request.POST ['na'],
+            buku = request.POST ['nb'],
+            jml_buku = request.POST ['jb'],
+            tgl_pinjam= request.POST ['tp'],
+            tgl_kembali = request.POST ['tk'],
             )
     data = models.pinjam.objects.filter(pk=id).first()
     print(data)
@@ -53,5 +57,18 @@ def buku_dipinjam(request,id):
     })
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request,'index.html')
 
+def dftr(request):
+    if request.POST:
+        models.anggota.objects.create(
+            nama_anggota = request.POST ['na'],
+            tgl_lahir = request.POST ['tl'],
+            alamat = request.POST ['almt'],
+            no_tlp = request.POST ['no_tlp'],
+            ) 
+        return redirect('/')
+    data = models.anggota.objects.all()
+    return render(request, 'dftr.html', {
+            'isi':data,
+            })

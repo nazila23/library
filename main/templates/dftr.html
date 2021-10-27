@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+        <title>Form peminjaman</title>
+    </head>
+    <!-- <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;;
+        }
+        body{
+            background: #125C13;
+            padding: 0 10px;
+        }
+        .wrapper{
+            max-width: 500px;
+            width: 100%;
+            background: #fff;
+            margin: 20px auto;
+            padding: 30px;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.125);
+        }
+        .wrapper .title{
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #125C13;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .wrapper .form{
+            width: 100%;
+        }
+        .wrapper .form .input_field{
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .wrapper .form .input_field label{
+            width: 200%;
+            color:#757575;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        .wrapper .form .input_field .input,
+        .wrapper .form .input_field .textarea{
+            width: 500%;
+            outline: none;
+            border: 1px solid #d5dbd9;
+            font-size: 15px;
+            padding: 8px 10px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .wrapper .form .input_field .textarea{
+            resize: none;
+            height: 125px;
+        }
+        .wrapper .form .input_field .custom_select{
+            position: relative;
+            width: 500%;
+            height: 37px;
+        }
+        .wrapper .form .input_field .custom_select select{
+            appearance: none;
+            border: 1px solid #d5dbd9;
+            height: 100%;
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 3px;
+            outline: none;
+        }
+        .wrapper .form .input_field .custom_select:before{
+            content: "";
+            position: absolute;
+            top: 12px;
+            right: 10px;
+            border: 8px solid;
+            border-color: #d5dbd9 transparent transparent transparent;
+            pointer-events: none;
+        }
+        .wrapper .form .input_field .input:focus,
+        .wrapper .form .input_field .textarea:focus,
+        .wrapper .form .input_field select:focus{
+            border: 1px solid #125C13;
+        }
+        .wrapper .form .input_field .btn{
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 15px;
+            border: 0;
+            background: #125C13;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 3px;
+        } 
+
+    </style> -->
+    <!-- <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=DIV, initial-scale=1.0">
+    <title>Document</title>
+</head> -->
+<body>
+        <div>
+        <form class="col-2" action="" method="POST">
+          {% csrf_token %} 
+        <div class="wrapper">
+        <div class="title">
+            Pendaftaran Anggota Perpustakaan Kita
+        </div>
+        <div class="form">
+                <label for="na">Nama lengkap</label>
+                <input type="text" class="input" name="na">
+                <br>
+                <label for ='tl'>Tanggal Lahir</label>
+                <input type="date" class="input" name="tl">
+                <br>    
+                <label for ='almt'>Alamat Tinggal</label>
+                <textarea class="textarea" name="almt"></textarea>
+                <br>     
+                <label for = 'no_tlp'>No.Handphone</label>
+                <input type="number" class="input" name="no_tlp">
+                <br>
+                <input class="btn btn-success" type="submit" value="Submit">
+            </div>
+        </div>
+    </div>
+    <br>
+  <form class = "col-8" action="">
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <td>
+            <th scope="col">No</th>
+            <th scope="col">Nama Anggota</th>
+            <th scope="col">alamat</th>
+            <th scope="col">No Hp</th>
+            <th scope="col">Tgl lahir</th>
+            </td>
+          </tr>
+        </thead>
+        {% for z in isi %}
+        <tbody>
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{z.nama_anggota}}</td>
+            <td>{{z.alamat}}</td>
+            <td>{{z.no_tlp}}</td>
+            <td>{{z.tgl_lahir}}</td>
+            
+                <a type="button" class="btn btn-success" href="/{{z.id}}/delete">Delete</a>
+                <a type="button" class="btn btn-success" href="/{{z.id}}/detail/">view</a>
+                <a type="button" class="btn btn-success" href="/{{z.id}}/update/">Edit</a>
+            </td>
+          </tr>
+         </tbody>
+        {% endfor %}                            
+        </table>
+    </form>
+</body>
+</html>

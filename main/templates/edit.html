@@ -13,11 +13,11 @@
             <label for="name"><h1>Form pinjam</h4></label>
             <br>
             <input type="text" class="form-control" name="nmr_anggota" value="{{data.nmr_anggota}}" class = "form-control">
-            <input type="text" class="form-control" name="nama"value="{{data.nama}}" class = "form-control">
-            <input type="text" class="form-control" name="buku"value="{{data.buku}}" class = "form-control">
-            <input type="number" class="form-control" name="jml_buku" value="{{data.jml_buku}}" class = "form-control">
-            <input type="date" class="form-control" name="tgl_pinjam"value="{{data.tgl_pinjam}}" class = "form-control">
-            <input type="date" class="form-control" name="tgl_kembali"value="{{data.tgl_kembali}}" class = "form-control">
+            <input type="text" class="form-control" name="na"value="{{data.nama_anggota}}" class = "form-control">
+            <input type="text" class="form-control" name="nb"value="{{data.buku}}" class = "form-control">
+            <input type="number" class="form-control" name="jb" value="{{data.jml_buku}}" class = "form-control">
+            <input type="date" class="form-control" name="tp"value="{{data.tgl_pinjam_format}}" class = "form-control">
+            <input type="date" class="form-control" name="tk"value="{{data.tgl_kembali_format}}" class = "form-control">
             <button type="submit" >Edit</button>
         </form>
     </div>
@@ -38,7 +38,7 @@
           <tr>
             <td>{{forloop.counter}}</td>
             <td>{{data.nmr_anggota}}</td>
-            <td>{{data.nama}}</td>
+            <td>{{data.nama_anggota}}</td>
             <td>{{data.buku}}</td>
             <td>{{data.jml_buku}}</td>
             <td>{{data.tgl_pinjam}}</td>
