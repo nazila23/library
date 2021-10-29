@@ -12,4 +12,9 @@ urlpatterns = [
     path('<id>/buku_dipinjam/', views.buku_dipinjam), 
     path('index/', views.index, name='index'),
     path('dftr/', views.dftr, name='dftr'),
+    path('<id>/edit_dftr/', views.edit_dftr),
+    path('<id>/delete_dftr/', views.delete_dftr),
+     path('<id>/detail_dftr/', views.detail_dftr),
+    path('kembali/', views.kembali, name='kembali'),
+    
 ]

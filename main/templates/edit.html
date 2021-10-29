@@ -8,26 +8,25 @@
 <body>
 
     <div class= "form">
-        <form action="" method="POST">
+      <form class="col-2" method="POST">
             {% csrf_token %} 
             <label for="name"><h1>Form pinjam</h4></label>
             <br>
             <input type="text" class="form-control" name="nmr_anggota" value="{{data.nmr_anggota}}" class = "form-control">
-            <input type="text" class="form-control" name="na"value="{{data.nama_anggota}}" class = "form-control">
-            <input type="text" class="form-control" name="nb"value="{{data.buku}}" class = "form-control">
-            <input type="number" class="form-control" name="jb" value="{{data.jml_buku}}" class = "form-control">
-            <input type="date" class="form-control" name="tp"value="{{data.tgl_pinjam_format}}" class = "form-control">
-            <input type="date" class="form-control" name="tk"value="{{data.tgl_kembali_format}}" class = "form-control">
+            <input type="text" class="form-control" name="buku"value="{{data.buku}}" class = "form-control">
+            <input type="number" class="form-control" name="jml_buku" value="{{data.jml_buku}}" class = "form-control">
+            <input type="date" class="form-control" name="tgl_pinjam"value="{{data.tgl_pinjam_format}}" class = "form-control">
+            <input type="date" class="form-control" name="tgl_kembali"value="{{data.tgl_kembali_format}}" class = "form-control">
             <button type="submit" >Edit</button>
         </form>
     </div>
     <br>
+    <form class = "col-8" action="">
     <table class="table table-dark">
         <thead>
           <tr>
             <th scope="col">No</th>
             <th scope="col">Nomor Anggota</th>
-            <th scope="col">Nama Pengunjung</th>
             <th scope="col">Nama Buku</th>
             <th scope="col">Jumlah Buku</th>
             <th scope="col">Tgl-Pinjam</th>
@@ -36,9 +35,7 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{forloop.counter}}</td>
             <td>{{data.nmr_anggota}}</td>
-            <td>{{data.nama_anggota}}</td>
             <td>{{data.buku}}</td>
             <td>{{data.jml_buku}}</td>
             <td>{{data.tgl_pinjam}}</td>
@@ -46,6 +43,7 @@
           </tr>
         </tbody>
       </table>
+    </form>
    </body>
   </head>
 </html> 
