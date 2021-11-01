@@ -1,5 +1,6 @@
 from typing import List
 from django.core.checks import messages
+from django.db.models.base import Model
 from django.http import request
 from django.http.response import Http404
 from django.shortcuts import redirect, render
@@ -9,7 +10,7 @@ from django.views.generic import ListView
 from .models import Pinjam
 
 # fungsi pinjam buku
-def form_pinjam(request):
+def pinjam(request):
     if request.POST:
         models.Pinjam.objects.create(
             nmr_anggota = request.POST ['choose'],
@@ -17,17 +18,18 @@ def form_pinjam(request):
             jml_buku = request.POST ['jb'],
             tgl_pinjam = request.POST ['tp'],
             tgl_kembali = request.POST ['tk'],
-            ) 
-        return redirect('/')
+        ) 
+        return redirect('/pinjam/')
     data2 = models.Pinjam.objects.all()
     data1=models.anggota.objects.all()
-    return render(request, 'form_pinjam.html', {
+    return render(request, 'pinjam.html', {
             'isi':data2,
             'data': data1,
              })
+
 def deleteindex(request,id):
     models.Pinjam.objects.filter(pk=id).delete()
-    return redirect ('form_pinjam')
+    return redirect ('pinjam')
     
 def detailindex(request,id):
     detail = models.Pinjam.objects.filter(pk=id).first()
@@ -52,6 +54,7 @@ def updateindex(request,id):
 
 def sejarah(request):
         return render(request, 'sejarah.html')
+        
 def visi(request):
         return render(request, 'visi.html')
 
@@ -61,27 +64,9 @@ def buku_dipinjam(request,id):
         'data': detail,
     })
 
-def index(request):
-    return render(request,'index.html')
+def home(request):
+    return render(request,'home.html')
 
-#fungsi kembali
-def kembali(request,id):
-    if request.POST:
-        models.Pinjam.objects.filter(id=id).update(
-            nmr_anggota = request.POST ['chosee'],
-            buku = request.POST ['nb'],
-            jml_buku = request.POST ['jb'],
-            tgl_kembali = request.POST ['tk'],
-            )
-    data = models.Pinjam.objects.filter(id=id).first()
-    print(data)
-    return render (request,'kembali.html',{
-        "data": data,
-    })
-def get_queryset(): # new
-        # query = self.request.GET.get('q')
-    object_list = Pinjam.objects.filter(id=id).first() 
-    return object_list ('kembali')
 
 # fungsi anggota(dftr)
 def dftr(request):
@@ -92,8 +77,8 @@ def dftr(request):
             alamat = request.POST ['almt'],
             no_tlp = request.POST ['no_tlp'],
             tgl_lahir = request.POST ['tl'],
-            ) 
-        return redirect('/dftr')
+        ) 
+        return redirect('/dftr/')
     data = models.anggota.objects.all()
     # print(da  ta, "halo")
     return render(request, 'dftr.html', {
@@ -106,7 +91,7 @@ def delete_dftr(request,id):
 
 def edit_dftr(request,id):
     if request.POST:
-        models.anggota.objects.filter(id=id).update(
+        models.anggota.objects.filter(pk=id).update(
             nik = request.POST ['nik'],
             nama_anggota = request.POST ['nama_anggota'],
             alamat = request.POST ['alamat'],
@@ -124,3 +109,31 @@ def detail_dftr(request,id):
     return render (request,'detail_dftr.html', {
         'data': detail,
     })
+
+#balik
+def balik(request,id):
+    if request.POST:
+        models.Pinjam.objects.filter(pk=id).first(
+            nik = request.POST ['nik'],
+            nama_anggota = request.POST ['nama_anggota'],
+            alamat = request.POST ['alamat'],
+            no_tlp= request.POST ['no_tlp'],
+            tgl_lahir = request.POST ['tgl_lahir'],
+        )
+    data = models.Pinjam.objects.filter(pk=id).first()
+    print(data)
+    return render (request,'balik.html',{
+        "data": data,
+    })
+
+       
+#balikinn buku
+def cari(request):
+    cari_data = models.Pinjam.objects.all()
+    return render(request, 'cari.html', {
+        'datanama' : cari_data
+    })
+
+def delete_cari(request,id):
+    models.Pinjam.objects.filter(pk=id).delete()
+    return redirect ('cari')

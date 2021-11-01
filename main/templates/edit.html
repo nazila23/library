@@ -6,11 +6,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </head>
 <body>
-
+  <h2><p style="text-align:center">Form Edit Pinjam</p></h2>
+  <br>
+  <a type="submit" class="btn btn-success" href="{% url 'pinjam' %}">Kembali</a>
     <div class= "form">
       <form class="col-2" method="POST">
             {% csrf_token %} 
-            <label for="name"><h1>Form pinjam</h4></label>
             <br>
             <input type="text" class="form-control" name="nmr_anggota" value="{{data.nmr_anggota}}" class = "form-control">
             <input type="text" class="form-control" name="buku"value="{{data.buku}}" class = "form-control">

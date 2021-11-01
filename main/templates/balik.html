@@ -27,25 +27,13 @@
                 <div>
                 <label for="na">Nomor Anggota</label>
                 <select onchange='selectOnChange(this)' name="choose">
-                <option></option>
-                {% for d in data %}
-                <option value=" {{d.nik}}"> {{d.nik}} - {{d.nama_anggota}}</option>
-               
+                <!-- <option></option> -->
+                {% for d in datanama %}
+                <option value="{{d.nik}}"> {{d.nik}} - {{d.nama_anggota}}</option>
                 {% endfor %}
            </select>
             </div>
-              <label for="nb">Nama Buku</label>
-              <input type="text" class="form-control" name="nb">
-            <br>
-              <label for="jb">Jumlah Buku</label>
-              <input type="number" class="form-control" name="jb">
-            <br>
-              <label for="tp">Tgl-Pinjam</label>
-              <input type="date" class="form-control" name="tp">
-            <br>
-              <label for="tk">Tgl-kembali</label>
-              <input type="date" class="form-control" name="tk">
-            < button type="submit" >Simpan </button>
+            <button type="submit" >Cari</button>
        </form>
      </div>
   </body>
@@ -57,24 +45,17 @@
             <th scope="col">No</th>
             <th scope="col">Nomor Anggota</th>
             <th scope="col">Nama Buku</th>
-            <th scope="col">Tgl-Pinjam</th>
             <th scope="col">Tgl-Kembali</th>
 
           </tr>
         </thead>
-        {% for z in isi %}
+        {% for d in isi %}
         <tbody>
           <tr>
             <td>{{forloop.counter}}</td>
-            <td>{{z.nmr_anggota}}</td>
-            <td>{{z.buku}}</td>
-            <td>{{z.tgl_pinjam}}</td>
-            <td>{{z.tgl_kembali}}</td>
-            <td> 
-                <a type="button" class="btn btn-success" href="/{{z.id}}/delete">Delete</a>
-                <a type="button" class="btn btn-success" href="/{{z.id}}/detail/">view</a>
-                <a type="button" class="btn btn-success" href="/{{z.id}}/update/">Edit</a>
-            </td>
+            <td>{{d.nmr_anggota}}</td>
+            <td>{{d.buku}}</td>
+            <td>{{d.tgl_kembali}}</td>
           </tr>
          </tbody>
         {% endfor %}                            
